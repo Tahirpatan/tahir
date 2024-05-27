@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1em;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.5em;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 0.7em 1.5em;
+            font-size: 1em;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #resume-preview {
+            margin-top: 2em;
+            padding: 1em;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        #resume-content {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Builder</h1>
+        <form id="resume-form">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="education">Education:</label>
+                <textarea id="education" name="education" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="experience">Work Experience:</label>
+                <textarea id="experience" name="experience" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills:</label>
+                <textarea id="skills" name="skills" required></textarea>
+            </div>
+            <button type="submit">Generate Resume</button>
+        </form>
+        <div id="resume-preview">
+            <h2>Resume Preview</h2>
+            <div id="resume-content"></div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('resume-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const education = document.getElementById('education').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+
+            const resumeContent = `
+                <h2>${name}</h2>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Address:</strong> ${address}</p>
+                <h3>Education</h3>
+                <p>${education.replace(/\n/g, '<br>')}</p>
+                <h3>Work Experience</h3>
+                <p>${experience.replace(/\n/g, '<br>')}</p>
+                <h3>Skills</h3>
+                <p>${skills.replace(/\n/g, '<br>')}</p>
+            `;
+
+            document.getElementById('resume-content').innerHTML = resumeContent;
+        });
+    </script>
+</body>
+</html>
